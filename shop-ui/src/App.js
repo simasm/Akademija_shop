@@ -1,25 +1,63 @@
-import logo from './logo.svg';
+import React, { Component } from "react";
 import './App.css';
+import Card from './Components/Card'
+import Bar from './Components/Bar'
+import Items from './items'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const stock = new Items();
 
+class App extends Component{
+
+  
+
+
+  render() {return (
+    <React.Fragment>
+
+      
+      <div className="container">
+       <Bar />
+       
+       <div className="container">
+       <p>Current stock 
+            <span> Total: {stock.items
+                                .map( itm => ( itm.price * itm.quantity))
+                                .reduce( (sum, total) => {return sum + total}, 0)};
+            </span>
+          </p>
+          <div className="row"> 
+            
+            {stock.items.map( itm => ( 
+            
+              <Card key = {itm.id} title = {itm.title} 
+              price = {itm.price} quantity = {itm.quantity} imgUrl = {itm.imageUrl}/>
+            
+            ))}
+          </div>
+        </div>
+
+        <div className="container">
+          <p>Items costing less than 10  
+            <span> Total: {stock.items.filter(itm => itm.price < 10)
+                                .map( itm => ( itm.price * itm.quantity))
+                                .reduce( (sum, total) => {return sum + total}, 0)};
+            </span>
+          </p>
+          <div className="row"> 
+            {stock.items.filter(itm => itm.price < 10)
+                        .map( itm => (   
+              <Card key = {itm.id} title = {itm.title} 
+              price = {itm.price} quantity = {itm.quantity} imgUrl = {itm.imageUrl}/>
+          
+            ))}
+          </div>
+        </div>  
+      
+       
+
+      </div>
+    </React.Fragment>
+    );
+    } 
+  }
 export default App;
