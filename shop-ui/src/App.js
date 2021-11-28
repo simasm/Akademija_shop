@@ -3,6 +3,8 @@ import './App.css';
 import Card from './Components/Card'
 import Bar from './Components/Bar'
 import Items from './items'
+import TestComponent from "./Components/TestComponent";
+import TestCompSD from "./Components/TestCompSD";
  
  
  
@@ -20,7 +22,8 @@ class App extends Component{
       
       <div className="container">
        <Bar />
-        
+       <TestComponent />
+       <TestCompSD />
    
        <div className="container">
        <p>Current stock 
