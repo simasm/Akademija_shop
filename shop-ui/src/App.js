@@ -14,7 +14,9 @@ const stock = new Items();
 class App extends Component{
 
   
-
+  componentDidMount = () => {
+    console.log("app did mount");
+  }
 
   render() {return (
     <React.Fragment>
