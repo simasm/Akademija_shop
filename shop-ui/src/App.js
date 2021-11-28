@@ -3,7 +3,7 @@ import './App.css';
 import Card from './Components/Card'
 import Bar from './Components/Bar'
 import Items from './items'
-import LikeCard from './Components/LikeCard'
+ 
 
 const stock = new Items();
 
@@ -18,7 +18,7 @@ class App extends Component{
       
       <div className="container">
        <Bar />
-       <LikeCard />
+        
        
        
        <div className="container">
