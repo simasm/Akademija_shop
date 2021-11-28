@@ -13,8 +13,8 @@ class Bar extends Component {
                 <h1>E-shop</h1>
               </div>
               <div className="col-5 align-self-end">
-                <button>filter</button>
-                <button>sum</button>  
+                <button className="btn btn-secondary">filter</button>
+                <button className="btn btn-secondary">sum</button>  
               </div>
              
            
