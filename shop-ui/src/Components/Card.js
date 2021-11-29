@@ -8,13 +8,18 @@ class Card extends Component {
       cardTitle : this.props.title,
       cardPrice : this.props.price,
       cardQuantity : this.props.quantity,
-      imageUrl : this.props.imgUrl
+      imageUrl : this.props.imgUrl,
+      cardDesc : this.props.desc
     };
+  }
+
+  cardClick = () => {
+      
   }
   
   render() {
     return (
-      <div className="card" style={{ width: 18 + "rem" }}>
+      <div className="card m-4" style={{ width: 18 + "rem" }}>
         <img
           src={this.state.imageUrl}
           className="card-img-top"
@@ -25,7 +30,10 @@ class Card extends Component {
           <p className="card-text">
             <span>Price {this.state.cardPrice} </span>
             <span>Quantity {this.state.cardQuantity} </span>
+            <span> {this.state.cardDesc} </span>
           </p>
+          <div className="btn btn-primary"
+               onClick = {this.cardClick} >Details</div>
            
         </div>
       </div>

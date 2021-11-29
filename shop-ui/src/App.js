@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import './App.css';
-import Card from './Components/Card'
 import Bar from './Components/Bar'
 import Items from './items'
-import TestComponent from "./Components/TestComponent";
-import TestCompSD from "./Components/TestCompSD";
- 
+import ProductContainer from "./Components/ProductContainer";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
  
  
 
@@ -21,51 +25,51 @@ class App extends Component{
   render() {return (
     <React.Fragment>
 
-      
-      <div className="container">
-       <Bar />
-       <TestComponent />
-       <TestCompSD />
-   
-       <div className="container">
-       <p>Current stock 
-            <span> Total: {stock.items
-                                .map( itm => ( itm.price * itm.quantity))
-                                .reduce( (sum, total) => {return sum + total}, 0)};
-            </span>
-          </p>
-          <div className="row"> 
-            
-            {stock.items.map( itm => ( 
-            
-              <Card key = {itm.id} title = {itm.title} 
-              price = {itm.price} quantity = {itm.quantity} imgUrl = {itm.imageUrl}/>
-            
-            ))}
-          </div>
-        </div>
 
-        <div className="container">
-          <p>Items costing less than 10  
-            <span> Total: {stock.items.filter(itm => itm.price < 10)
-                                .map( itm => ( itm.price * itm.quantity))
-                                .reduce( (sum, total) => {return sum + total}, 0)};
-            </span>
-          </p>
-          <div className="row"> 
-            {stock.items.filter(itm => itm.price < 10)
-                        .map( itm => (   
-              <Card key = {itm.id} title = {itm.title} 
-              price = {itm.price} quantity = {itm.quantity} imgUrl = {itm.imageUrl}/>
-          
-            ))}
+
+
+      <div className="container">
+       
+       <Router>
+      <div>
+      <Bar />
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/about">
+             
+          </Route>
+          <Route path="/users">
+             
+          </Route>
+          <Route path="/">
+             
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+
+
+
+       <div className="container">
+       <ProductContainer />
           </div>
         </div>  
-      
-       
-
-      </div>
-     
+  
     </React.Fragment>
     );
     } 
