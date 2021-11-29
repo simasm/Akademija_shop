@@ -9,12 +9,19 @@ class Card extends Component {
       cardPrice : this.props.price,
       cardQuantity : this.props.quantity,
       imageUrl : this.props.imgUrl,
-      cardDesc : this.props.desc
+      cardDesc : this.props.desc,
+      buttonTitle : "Details",
+      viewMode : false
     };
   }
 
   cardClick = () => {
-      
+      if (this.state.viewMode) {
+        this.setState({buttonTitle : "Add to cart"});
+      }
+      else {
+        this.setState({buttonTitle : "Details"});
+      }
   }
   
   render() {
@@ -33,7 +40,7 @@ class Card extends Component {
             <span> {this.state.cardDesc} </span>
           </p>
           <div className="btn btn-primary"
-               onClick = {this.cardClick} >Details</div>
+               onClick = {this.cardClick} > {this.state.buttonTitle} </div>
            
         </div>
       </div>

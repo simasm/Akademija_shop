@@ -9,11 +9,13 @@ import {
   Route,
   Link
 } from "react-router-dom";
-
+import ProductView from "./Components/ProductView";
  
  
 
 const stock = new Items();
+
+ 
 
 class App extends Component{
 
@@ -54,7 +56,7 @@ class App extends Component{
              
           </Route>
           <Route path="/users">
-             
+              <ProductView />
           </Route>
           <Route path="/">
              
