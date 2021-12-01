@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
  
 class Card extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class Card extends Component {
   cardClick = () => {
       if (this.state.viewMode) {
         this.setState({buttonTitle : "Add to cart"});
+       
       }
       else {
         this.setState({buttonTitle : "Details"});
@@ -40,7 +42,7 @@ class Card extends Component {
             <span> {this.state.cardDesc} </span>
           </p>
           <div className="btn btn-primary"
-               onClick = {this.cardClick} > {this.state.buttonTitle} </div>
+               onClick = {this.cardClick} > {this.state.buttonTitle}  </div>
            
         </div>
       </div>

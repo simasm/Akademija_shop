@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 class Bar extends Component {
   render() {
@@ -15,6 +16,7 @@ class Bar extends Component {
               <div className="col-5 align-self-end">
                 <button className="btn btn-secondary">filter</button>
                 <button className="btn btn-secondary">sum</button>  
+                <NavLink to="/product">pdct</NavLink>
               </div>
              
            
