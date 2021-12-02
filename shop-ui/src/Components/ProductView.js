@@ -37,6 +37,7 @@ export default class ProductView extends Component{
                 <div className = "row"> 
                     <div className = "col-6">
                     <Card key = {this.state.product.id} 
+                        id = {this.state.product.id}
                         title = {this.state.product.title} 
                         price = {this.state.product.price} 
                         quantity = {this.state.product.quantity}

@@ -10,12 +10,21 @@ import {
   Link
 } from "react-router-dom";
 import ProductView from "./Components/ProductView";
- 
+ import Cart from "./Components/Cart";
  
 
 const stock = new Items();
 
  
+function ShowProduct(props) {
+  return <ProductContainer pts={props.product_to_show} />
+}
+
+ 
+
+function Users() {
+  return <h2>Users</h2>;
+}
 
 class App extends Component{
 
@@ -27,53 +36,39 @@ class App extends Component{
   render() {return (
     <React.Fragment>
 
-
-
-
       <div className="container">
-       
-       <Router>
+      <Router>
       <div>
-      <Bar />
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
+         <Bar />
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
-             
+          <Route path="/cart">
+             <Cart user={0}/>
+          </Route>
+          <Route path="/cart:user">
+             <Cart />
           </Route>
           <Route path="/users">
-              <ProductView />
+            <Users />
+          </Route>
+          <Route path="/:id">
+            <ProductContainer   />
           </Route>
           <Route path="/">
-             
+            <ProductContainer  id={0} />
           </Route>
         </Switch>
       </div>
     </Router>
-
-
-
-       <div className="container">
-       <ProductContainer />
-          </div>
-        </div>  
+  
+      </div>  
   
     </React.Fragment>
     );
     } 
   }
 export default App;
+
+

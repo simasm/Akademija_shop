@@ -2,52 +2,84 @@ import React, {Component} from 'react'
 import axios from 'axios'
 
 import Card from './Card'
+import { useParams } from 'react-router';
+import { useState, useEffect } from 'react';
 
-//cartcounter username contexts
-export default class ProductContainer extends Component {
+ const ProductContainer = (props) => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            products_array : null
-        }
-    }
-
-    componentDidMount() {
+    
+    let {id} = useParams();
+    if(id === undefined)
+        id = props.id;
+    console.log("id == ", id);
+    const [state, setState] = useState({products_array : null });
+     
+    
+    useEffect(() => {
+      
         const load = async () => {
             const response = await axios.get("https://itpro2017.herokuapp.com/api/products");
             const products = response.data;
            // console.log("product size " + products.length);
             
-            this.setState({products_array : products});
-            console.log("length " + this.state.products_array.length);
+            setState({products_array : products});
+            
         }
 
-        console.log("app did mount");
+        console.log("use effect");
         setTimeout(load,3000);
-    }
-
-    render() {
         
-            
-            if (this.state.products_array === null)
+    } ,[]);
+
+    console.log(state.products_array);
+ 
+    
+            if (state.products_array === null)
                 return ( <div>neuzkrove</div> );
             else
-                return ( 
+            if (id === 0) {
+
+                return (
                     <div className = "row"> 
-                        {this.state.products_array.map(prod => 
+                       {state.products_array.map(prod => 
                         <Card key = {prod.id} 
+                              id = {prod.id}
                               title = {prod.title} 
                               price = {prod.price} 
                               quantity = {prod.quantity}
-                              desc = {prod.description} /> )}
+                              desc = {prod.description} />  )}
+                        
+                    </div>
+
+                );
+            }
+            else 
+                
+                console.log(id);
+                return ( 
+                    <div className = "row"> 
+                        <div> {id} </div>
+                        {state.products_array
+                         .filter(prod => 
+                            prod.id == id)
+                        .map(prod => 
+                        <Card key = {prod.id} 
+                              id = {prod.id}
+                              title = {prod.title} 
+                              price = {prod.price} 
+                              quantity = {prod.quantity}
+                              desc = {prod.description} /> )
+                             }
                         </div> 
+                        );
                     
                      //product map);
-                );
+                 
         
-    }
+    
 
     //css className ir t.t.
 
 }
+
+export default ProductContainer;

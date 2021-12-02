@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
  
 class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {
       key : this.props.key,
+      id : this.props.id,
       cardTitle : this.props.title,
       cardPrice : this.props.price,
       cardQuantity : this.props.quantity,
@@ -18,11 +19,13 @@ class Card extends Component {
 
   cardClick = () => {
       if (this.state.viewMode) {
-        this.setState({buttonTitle : "Add to cart"});
+        this.setState({buttonTitle : "Add to cart", viewMode : false});
        
       }
       else {
-        this.setState({buttonTitle : "Details"});
+        this.setState({buttonTitle : "Details", viewMode : true});
+        
+        
       }
   }
   
@@ -40,9 +43,13 @@ class Card extends Component {
             <span>Price {this.state.cardPrice} </span>
             <span>Quantity {this.state.cardQuantity} </span>
             <span> {this.state.cardDesc} </span>
+            
           </p>
-          <div className="btn btn-primary"
-               onClick = {this.cardClick} > {this.state.buttonTitle}  </div>
+          <div className="btn btn-secondary"
+               onClick = {this.cardClick} >  
+              
+              <Link to={`/${this.state.id}`}>{this.state.buttonTitle} </Link>       
+          </div>
            
         </div>
       </div>
