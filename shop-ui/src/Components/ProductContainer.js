@@ -9,9 +9,10 @@ import { useState, useEffect } from 'react';
 
     
     let {id} = useParams();
+    var imgUrl = "https://media.karousell.com/media/photos/products/2020/01/23/samsung_basic_keypad_phone_1579753834_f597a219_progressive.jpg";
     if(id === undefined)
         id = props.id;
-    console.log("id == ", id);
+   // console.log("id == ", id);
     const [state, setState] = useState({products_array : null });
      
     
@@ -26,16 +27,16 @@ import { useState, useEffect } from 'react';
             
         }
 
-        console.log("use effect");
-        setTimeout(load,3000);
+       /// console.log("use effect");
+        setTimeout(load,1500);
         
     } ,[]);
 
-    console.log(state.products_array);
+    //console.log(state.products_array);
  
     
             if (state.products_array === null)
-                return ( <div>neuzkrove</div> );
+                return ( <div>Loading...</div> );
             else
             if (id === 0) {
 
@@ -47,7 +48,9 @@ import { useState, useEffect } from 'react';
                               title = {prod.title} 
                               price = {prod.price} 
                               quantity = {prod.quantity}
-                              desc = {prod.description} />  )}
+                              desc = {prod.description}
+                              viewMode = {true} 
+                              imgUrl = {imgUrl}/>  )}
                         
                     </div>
 
@@ -55,22 +58,27 @@ import { useState, useEffect } from 'react';
             }
             else 
                 
-                console.log(id);
+            //    console.log(id);
                 return ( 
-                    <div className = "row"> 
-                        <div> {id} </div>
+                    <div className = "row justify-content-center"> 
+                        
                         {state.products_array
                          .filter(prod => 
                             prod.id == id)
-                        .map(prod => 
+                        .map(prod =>  
+                            
                         <Card key = {prod.id} 
                               id = {prod.id}
                               title = {prod.title} 
                               price = {prod.price} 
                               quantity = {prod.quantity}
-                              desc = {prod.description} /> )
+                              desc = {prod.description}
+                              viewMode = {false}
+                              imgUrl = {imgUrl} /> )
                              }
-                        </div> 
+
+ 
+                    </div> 
                         );
                     
                      //product map);

@@ -24,8 +24,8 @@ export default class ProductView extends Component{
             this.setState({product : products[0]});
          
         }
-        const { url, ppath } = useRouteMatch();
-        this.setState({uurl : url, path : ppath});
+     //   const { url, ppath } = useRouteMatch();
+      //  this.setState({uurl : url, path : ppath});
         console.log("prod view did mount");
         setTimeout(load,3000);
     }

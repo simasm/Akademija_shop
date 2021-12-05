@@ -1,37 +1,37 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react/cjs/react.development";
+import DetailsButton from "./DetailsButton";
  
+import AddToCartButton from "./AddToCartButton";
+
 class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      key : this.props.key,
-      id : this.props.id,
-      cardTitle : this.props.title,
-      cardPrice : this.props.price,
-      cardQuantity : this.props.quantity,
-      imageUrl : this.props.imgUrl,
-      cardDesc : this.props.desc,
-      buttonTitle : "Details",
-      viewMode : false
+      key: this.props.key,
+      id: this.props.id,
+      cardTitle: this.props.title,
+      cardPrice: this.props.price,
+      cardQuantity: this.props.quantity,
+      imageUrl: this.props.imgUrl,
+      cardDesc: this.props.desc,
+      buttonTitle: "Details",
+      viewMode: this.props.viewMode
+       
+      
     };
   }
 
+   
+
   cardClick = () => {
-      if (this.state.viewMode) {
-        this.setState({buttonTitle : "Add to cart", viewMode : false});
-       
-      }
-      else {
-        this.setState({buttonTitle : "Details", viewMode : true});
-        
-        
-      }
+
   }
-  
+
   render() {
     return (
-      <div className="card m-4" style={{ width: 18 + "rem" }}>
+      <div className="card m-2" style={{ width: 18 + "rem" }}>
         <img
           src={this.state.imageUrl}
           className="card-img-top"
@@ -43,14 +43,14 @@ class Card extends Component {
             <span>Price {this.state.cardPrice} </span>
             <span>Quantity {this.state.cardQuantity} </span>
             <span> {this.state.cardDesc} </span>
-            
           </p>
-          <div className="btn btn-secondary"
-               onClick = {this.cardClick} >  
-              
-              <Link to={`/${this.state.id}`}>{this.state.buttonTitle} </Link>       
-          </div>
-           
+
+
+          <DetailsButton viewMode={this.props.viewMode} id={this.state.id} />
+
+          <AddToCartButton />
+     
+
         </div>
       </div>
     );
