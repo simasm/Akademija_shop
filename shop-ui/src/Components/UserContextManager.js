@@ -1,27 +1,28 @@
 import React, { useState } from 'react'
 
-export const UserContext = React.createContext({
-  user: "me",
-  cart : [2,3,4],
-  setUser: () => {},
-  addToCart: () => {}
-})
+export const UserContext = React.createContext( );
 
  const UserContextProvider = (props) => {
-
+ 
   const setUser = (user) => {
     setState({...state, user: user});
+    console.log(state);
   }
   const addToCart = (id) => {
     let newCart = state.cart.concat(id);
-    setState({ ...state, cart: newCart });
     console.log("hook ");
     console.log(newCart);
+  
+    console.log(state.cart);
     console.log(" ");
+    setState({ ...state, cart: newCart });
+    console.log("hook after setstate");
+    console.log(newCart);
+ 
     console.log(state.cart);
     console.log("end hook ");
   }
-
+  
   const initState = {
      cart : [],
     user: "",

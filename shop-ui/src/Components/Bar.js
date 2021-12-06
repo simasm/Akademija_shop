@@ -6,9 +6,9 @@ import { UserContext } from "./UserContextManager";
 const Bar = (props) => {
   
     let {user, setUser} = useContext(UserContext);
-    console.log("init context : " + props.user);
+    console.log("init context props : "   + user);
     
-     console.log("props val;" + user);
+      
  
     const handleInput = (event) =>
     { 
@@ -16,11 +16,13 @@ const Bar = (props) => {
         console.log("Set user " + user);
         
     }
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const handleSubmit = (e) => {
+      
+       
         setUser(user)
         console.log("submit " + user);
-     
+        e.stopPropagation();
+        
     }
     return (
       <React.Fragment>
@@ -61,7 +63,7 @@ const Bar = (props) => {
                          />
 
                 <Link to={`/cart${user}`} style={{ color: "white" }} className="text-decoration-none">
-                  <button className="btn btn-secondary m-2" type="submit" >Log in</button>
+                  <div className="btn btn-secondary m-2" type="submit" >Log in</div>
                   </Link>
 
               </form>
