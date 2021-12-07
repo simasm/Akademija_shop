@@ -4,7 +4,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import ProductContainer from './Components/ProductContainer';
+import AdminView from './Components/AdminView';
+import Cart from './Components/Cart';
+import UserContextProvider from './Components/UserContextManager';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import axios from 'axios'
 
 import Card from './Card'
@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
     let {id} = useParams();
     var imgUrl = "https://media.karousell.com/media/photos/products/2020/01/23/samsung_basic_keypad_phone_1579753834_f597a219_progressive.jpg";
     if(id === undefined)
-        id = props.id;
+        id = 0;
    // console.log("id == ", id);
     const [state, setState] = useState({products_array : null });
      

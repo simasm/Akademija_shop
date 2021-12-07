@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { useLocation, useParams } from "react-router";
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import React from "react";
+import {useParams} from "react-router";
+
 
  const Cart = (props) => {
-  const  {user} = useParams();
-   
+  
+        let {user} = useParams();
+ 
    
     return (<div>cart {user}
             <div className="container">
