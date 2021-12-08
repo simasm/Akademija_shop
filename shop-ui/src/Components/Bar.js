@@ -1,64 +1,74 @@
 import React, { Component, useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "./UserContextManager";
+import { UserCtx } from "./UserCtx"; 
 
 
-const Bar = (props) => {
+const Bar = (props,a) => {
+  
+   let user = props.value;
+  console.log("init context props : " + JSON.stringify(a));
 
-  let { user, setUser } = useContext(UserContext);
-  console.log("init context props : " + user);
-
-
+  const consumeUsr = (usr) => {
+    console.log("consumed "+usr);
+    return usr;
+  }
 
   const handleInput = (event) => {
-    setUser(event.target.value);
-    console.log("Set user " + user);
+     
 
   }
   const handleSubmit = (e) => {
 
-
-    setUser(user)
-    console.log("submit " + user);
+    //nieko nedaro
+  
     e.stopPropagation();
 
   }
   return (
-    <React.Fragment>
-
-
+    <UserCtx.Consumer>
+      {(app) => (
+       
       <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
         <div className="container-fluid">
 
-          <div className="navbar-brand"> E-shop    </div>
+          <div className="navbar-brand">E-shop  [{app.usr}]</div>
 
 
 
           <ul className="navbar-nav me-auto mb-lg-0">
             <li className="nav-item">
-              <Link to="/" style={{ color: "white" }} className="text-decoration-none">
+              <Link to="/" 
+                    style={{ color: "white" }} 
+                    className="text-decoration-none">
                 <button className="btn btn-secondary m-2">
                   Home
                 </button>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={`/cart/${user}`} style={{ color: "white" }} className="text-decoration-none">
+              <Link to={`/cart/${user}`} 
+                    style={{ color: "white" }} 
+                    className="text-decoration-none">
                 <button className="btn btn-secondary m-2">
                   Cart
                 </button>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/admin" style={{ color: "white" }} className="text-decoration-none">
+              <Link to="/admin" 
+                    style={{ color: "white" }} 
+                    className="text-decoration-none">
                 <button className="btn btn-secondary m-2">
                   Admin
                 </button>
               </Link>
             </li>
           </ul>
-          <span style={{ color: "white" }} className="text m-2">Logged in as {user}</span>
-          <form className="d-flex align-self-end input-group w-auto" onSubmit={handleSubmit}>
+          <span style={{ color: "white" }} 
+                className="text m-2">
+                  Logged in as {app.usr}</span>
+          <form className="d-flex align-self-end input-group w-auto"
+                onSubmit={handleSubmit}>
 
             <input type='text'
               className='form-control'
@@ -67,8 +77,11 @@ const Bar = (props) => {
               onChange={handleInput}
             />
 
-            <Link to={`/cart/${user}`} style={{ color: "white" }} className="text-decoration-none">
-              <div className="btn btn-secondary m-2" type="submit" >Log in</div>
+            <Link to={`/cart/${app.usr}`} 
+                  style={{ color: "white" }} 
+                  className="text-decoration-none">
+              <div className="btn btn-secondary m-2" 
+                   type="submit" >Log in</div>
             </Link>
 
           </form>
@@ -77,9 +90,9 @@ const Bar = (props) => {
         </div>
 
       </nav>
+      )}
 
-
-    </React.Fragment>
+      </UserCtx.Consumer>
   );
 
 }

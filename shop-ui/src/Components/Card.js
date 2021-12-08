@@ -18,8 +18,6 @@ class Card extends Component {
       cardDesc: this.props.desc,
       buttonTitle: "Details",
       viewMode: this.props.viewMode
-       
-      
     };
   }
 
@@ -46,9 +44,10 @@ class Card extends Component {
           </p>
 
 
-          <DetailsButton viewMode={this.props.viewMode} id={this.state.id} />
+          <DetailsButton viewMode={this.props.viewMode} 
+                         id={this.state.id} />
 
-          <AddToCartButton />
+          <AddToCartButton id={this.state.id}/>
      
 
         </div>
