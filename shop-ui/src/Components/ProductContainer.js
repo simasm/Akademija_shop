@@ -19,9 +19,9 @@ import { useState, useEffect } from 'react';
     useEffect(() => {
       
         const load = async () => {
-            const response = await axios.get("https://itpro2017.herokuapp.com/api/products");
+            const response = await axios.get("http://localhost:8080/api/products");
             const products = response.data;
-           // console.log("product size " + products.length);
+            console.log("product size " + products.length);
             
             setState({products_array : products});
             

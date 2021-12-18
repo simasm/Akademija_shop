@@ -6,21 +6,33 @@ const ProductList = () => {
 
     const [state, setState] = useState({ products_array: null });
 
+    const load = async () => {
+        const response = await axios.get("http://localhost:8080/api/products");
+        const products = response.data;
+        // console.log("product size " + products.length);
+
+        setState({ products_array: products });
+
+    }
 
     useEffect(() => {
-
-        const load = async () => {
-            const response = await axios.get("https://itpro2017.herokuapp.com/api/products");
-            const products = response.data;
-            // console.log("product size " + products.length);
-
-            setState({ products_array: products });
-
-        }
 
         load();
 
     }, []);
+
+    const deleteProd = async (id) => {
+        console.log("http://localhost:8080/api/products/".concat(id));
+        const response = await axios.delete("http://localhost:8080/api/products/".concat(id));
+        console.log(response);
+        if(response.status < 400) {
+            load();
+        }
+     }
+
+   let deleteProduct = (id) => {
+        deleteProd(id);
+    }
 
     if (state.products_array !== null)
         return (
@@ -32,6 +44,7 @@ const ProductList = () => {
                     <div className="col m-2">title</div>
                     <div className="col m-2">price</div>
                     <div className="col m-2">quantity</div>
+                    <div className="col m-2">action</div>
                         </li>
                     {state.products_array.map(product =>
                         <li className="row bg-light" key={product.id}>
@@ -43,6 +56,8 @@ const ProductList = () => {
                             {product.price}   </div>
                             <div className="col m-2">
                             {product.quantity}   </div>
+                            <div className="col btn m-2 btn-secondary"
+                                onClick={()=>deleteProduct(product.id)}>Delete</div>
                         </li>)}
                 </ol>
             

@@ -1,29 +1,52 @@
 import React from "react";
 import { useState } from "react";
 import ProductList from "./ProductList";
+import axios from "axios";
 
 
 
 const ProductAddForm = () => {
 
-    const [state] = useState({ title: "", price: 0.0, quant: 0 });
+    const [state, setState] = useState({ title: "", price: "", quant: ""});
 
     const submitHandle = (e) => {
 
-        console.log(state);
+        console.log("state : "+JSON.stringify(state));
+        if(validateForm()) {
+            uploadProduct();
+        }
+        else alert("invalid product details");
+        
         e.preventDefault();
     }
-    const handleChange = () => {
-
+    const handleChange = (e) => {
+     
+       switch(e.target.name) {
+           case "title" : setState( {...state, title : e.target.value}); break;
+           case "price" : setState( {...state, price : e.target.value}); break;
+           case "quantity" : setState( {...state, quant : e.target.value}); break;
+           default : break;
+       }
     }
 
-    return (<div className="container pt-2">
-        <div className="row justify-content-evenly">
-            <div className="col-6">
-                <ProductList />
-            </div>
-            <div className="col-4">
+    const validateForm = () => {
+        // console.log("price " + state.price.match(/([0-9]+\.?[0-9]*|\.[0-9]+)$/)
+        //      + "\n quant " + state.quant.match(/[0-9]+/));
+        return( (state.price.match(/([0-9]+\.?[0-9]*|\.[0-9]+)$/) &&
+            state.quant.match(/[0-9]+/)) !== null);
+    }
 
+    const uploadProduct = async () => {
+        
+        const response = await axios.post("http://localhost:8080/api/products",state);
+        console.log(response);
+        if(response.status < 400) 
+            {
+                
+            }
+         
+     }
+    return ( 
                 <form onSubmit={submitHandle} >
 
                     <div className="row bg-dark" style={{color:"white"}}>
@@ -34,7 +57,7 @@ const ProductAddForm = () => {
                            
                             <span className="m-2">Title</span>
                             <input className="col-5-lg" type="text"
-
+                                name = "title"
                                 placeholder="title"
                                 onChange={handleChange} />
 
@@ -44,7 +67,7 @@ const ProductAddForm = () => {
                         <div className="col">
                             <span className="m-2">Price</span>
                             <input className="col" type="text"
-
+                                name = "price"
                                 placeholder="price"
                                 onChange={handleChange} />
 
@@ -54,6 +77,7 @@ const ProductAddForm = () => {
                         <div className="col">
                             <span className="m-2">Quantity</span>
                             <input className="col" type="text"
+                                name = "quantity"
                                 placeholder="quantity"
                                 onChange={handleChange} />
 
@@ -67,9 +91,7 @@ const ProductAddForm = () => {
                         value="Submit" />
 
                 </form>
-            </div>
-        </div>
-    </div>);
+      );
 }
 
 

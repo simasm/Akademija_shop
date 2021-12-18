@@ -15,7 +15,7 @@ import { UserCtx } from "./Components/UserCtx";
 //const stock = new Items();
 
 
-const UserContext = React.createContext("???");
+const UserContext = React.createContext("");
 
 
 
