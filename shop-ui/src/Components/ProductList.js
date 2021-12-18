@@ -2,9 +2,9 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const ProductList = () => {
+const ProductList = (props) => {
 
-    const [state, setState] = useState({ products_array: null });
+    const [state, setState] = useState(props.state);
 
     const load = async () => {
         const response = await axios.get("http://localhost:8080/api/products");
