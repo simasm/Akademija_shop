@@ -4,12 +4,14 @@ import axios from 'axios';
 
 const ProductList = (props) => {
 
-    const [state, setState] = useState(props.state);
+    const [state, setState] = useState({products_array: null});
+
+    console.log(JSON.stringify(props));
 
     const load = async () => {
         const response = await axios.get("http://localhost:8080/api/products");
         const products = response.data;
-        // console.log("product size " + products.length);
+        
 
         setState({ products_array: products });
 
@@ -18,6 +20,8 @@ const ProductList = (props) => {
     useEffect(() => {
 
         load();
+     // setState({products_array : props.products_array});
+      
 
     }, []);
 
@@ -37,7 +41,7 @@ const ProductList = (props) => {
     if (state.products_array !== null)
         return (
 
-            
+             
                 <ol className="conainer pt-2">
                     <li className="row bg-dark" style={{ color: "white" }}>
                     <div className="col m-2">id</div>

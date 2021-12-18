@@ -7,6 +7,8 @@ import axios from 'axios';
 import { useState } from 'react';
  
 
+const ProductListContext = React.createContext("");
+
 const AdminView = (props) => {
 
     const [state, setState] = useState({ products_array: null });
@@ -26,17 +28,23 @@ const AdminView = (props) => {
 
     }, []);
 
-        
-    return (<div className="container pt-2">
+    const reload = setState;
+    return (
+    <ProductListContext.Provider value={state}>
+    <div className="container pt-2">
     <div className="row justify-content-evenly">
         <div className="col-6">
-            <ProductList state={state}/>
+       
+             <ProductList  /> 
+     
         </div>
         <div className="col-4">
-            <ProductAddForm />
+           <ProductAddForm pstate={state}/>   
           </div>
         </div>
-    </div>);
+    </div>
+    </ProductListContext.Provider>
+    );
 
 }
 export default AdminView;

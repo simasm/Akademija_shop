@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 
-const ProductAddForm = () => {
+const ProductAddForm = (props) => {
 
     const [state, setState] = useState({ title: "", price: "", quant: ""});
 
@@ -14,6 +14,7 @@ const ProductAddForm = () => {
         console.log("state : "+JSON.stringify(state));
         if(validateForm()) {
             uploadProduct();
+             
         }
         else alert("invalid product details");
         
