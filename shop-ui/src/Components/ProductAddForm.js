@@ -7,7 +7,7 @@ import {ProductListContext} from "./AdminView";
 
 const ProductAddForm = (props) => {
 
-    const [state, setState] = useState({ title: "", price: "", quant: ""});
+    const [state, setState] = useState({ title: "", price: "", quantity: ""});
     const  ctx  = useContext(ProductListContext);
     console.log("Plistctx  " + JSON.stringify(ctx));
  
@@ -27,7 +27,7 @@ const ProductAddForm = (props) => {
        switch(e.target.name) {
            case "title" : setState( {...state, title : e.target.value}); break;
            case "price" : setState( {...state, price : e.target.value}); break;
-           case "quantity" : setState( {...state, quant : e.target.value}); break;
+           case "quantity" : setState( {...state, quantity : e.target.value}); break;
            default : break;
        }
     }
@@ -36,7 +36,7 @@ const ProductAddForm = (props) => {
         // console.log("price " + state.price.match(/([0-9]+\.?[0-9]*|\.[0-9]+)$/)
         //      + "\n quant " + state.quant.match(/[0-9]+/));
         return( (state.price.match(/([0-9]+\.?[0-9]*|\.[0-9]+)$/) &&
-            state.quant.match(/[0-9]+/)) !== null);
+            state.quantity.match(/[0-9]+/)) !== null);
     }
 
     const uploadProduct = async () => {

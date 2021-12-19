@@ -11,6 +11,7 @@ import Cart from "./Components/Cart";
 import Footer from "./Components/Footer";
 import AdminView from "./Components/AdminView";
 import { UserCtx } from "./Components/UserCtx";
+import Admin_view from "./Components/Admin/Admin_view";
 
 //const stock = new Items();
 
@@ -32,7 +33,7 @@ const App = () => {
 
     return (
         <div className="container">
-            <UserCtx.Provider value={appState}>
+            <UserCtx.Provider value={appState} method={setAppState}>
                 <BrowserRouter>
                      
                        <Bar /> 
@@ -48,7 +49,9 @@ const App = () => {
                             <Cart />
                         </Route>
                         <Route path="/admin">
-                            <AdminView />
+                            <AdminView /> 
+                            
+                            <Admin_view />
                         </Route>
                         <Route path="/:id">
                             <ProductContainer />
