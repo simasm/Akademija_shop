@@ -39,7 +39,7 @@ const ProductList = (props) => {
     }
 
     if (state.products_array !== null)
-        return (
+        return   (
 
              
                 <ol className="conainer pt-2">

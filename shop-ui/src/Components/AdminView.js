@@ -1,24 +1,42 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ProductAddForm from './ProductAddForm';
 import ProductList from './ProductList';
 import { withRouter } from 'react-router';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { Collapse } from 'bootstrap';
  
 
-const ProductListContext = React.createContext("");
+export const  ProductListContext = React.createContext(
+    
+ );
 
 const AdminView = (props) => {
 
-    const [state, setState] = useState({ products_array: null });
+    //const   [state, setState] = useState({ products_array: null});
+    const updatepa = (a) => {
+        console.log("updatepa " + a);
+        setState({...state, refresh :state.refresh + 1});
+    }
 
-    const load = async () => {
+    const initState = {
+        products_array: null,
+        refresh : 0,
+       updatepa: updatepa 
+        
+     } 
+     const   [state, setState] = useState(initState);
+   
+     
+      
+    
+     const load = async () => {
         const response = await axios.get("http://localhost:8080/api/products");
         const products = response.data;
         // console.log("product size " + products.length);
 
-        setState({ products_array: products });
+        setState({...state, products_array: products });
 
     }
 

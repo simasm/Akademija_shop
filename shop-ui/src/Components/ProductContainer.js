@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import axios from 'axios'
 
 import Card from './Card'
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
+import { ProductListContext } from './AdminView';
 
  const ProductContainer = (props) => {
 
@@ -15,8 +16,9 @@ import { useState, useEffect } from 'react';
    // console.log("id == ", id);
     const [state, setState] = useState({products_array : null });
      
-    
-    useEffect(() => {
+    const ctx = useContext(ProductListContext);
+    console.log("ctx " + JSON.stringify(ctx));
+     useEffect(() => {
       
         const load = async () => {
             const response = await axios.get("http://localhost:8080/api/products");

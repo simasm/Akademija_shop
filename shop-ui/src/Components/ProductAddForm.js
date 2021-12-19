@@ -1,14 +1,16 @@
-import React from "react";
-import { useState } from "react";
+import React, { useContext } from "react";
+import { useState,useEffect } from "react";
 import ProductList from "./ProductList";
 import axios from "axios";
-
+import {ProductListContext} from "./AdminView";
 
 
 const ProductAddForm = (props) => {
 
     const [state, setState] = useState({ title: "", price: "", quant: ""});
-
+    const  ctx  = useContext(ProductListContext);
+    console.log("Plistctx  " + JSON.stringify(ctx));
+ 
     const submitHandle = (e) => {
 
         console.log("state : "+JSON.stringify(state));
@@ -42,8 +44,9 @@ const ProductAddForm = (props) => {
         const response = await axios.post("http://localhost:8080/api/products",state);
         console.log(response);
         if(response.status < 400) 
-            {
-                
+            { 
+                ctx.updatepa("d");
+                console.log("+d" +JSON.stringify(ctx));
             }
          
      }

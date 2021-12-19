@@ -7,23 +7,22 @@ import { UserCtx } from "./UserCtx";
 const Bar = (props,a) => {
   
    let user = props.value;
-  console.log("init context props : " + JSON.stringify(a));
 
   const consumeUsr = (usr) => {
     console.log("consumed "+usr);
     return usr;
   }
 
-  const handleInput = (event) => {
-     
+  const handleInput = (e) => {
 
   }
   const handleSubmit = (e) => {
 
     //nieko nedaro
-  
-    e.stopPropagation();
+    console.log("init context props : " + JSON.stringify(props.value));
+    e.preventDefault();
 
+ 
   }
   return (
     <UserCtx.Consumer>
@@ -68,9 +67,8 @@ const Bar = (props,a) => {
           <span style={{ color: "white" }} 
                 className="text m-2">
                   Logged in as {app.usr}</span>
-          <form className="d-flex align-self-end input-group w-auto"
-                onSubmit={handleSubmit}>
-
+          <form onSubmit={handleSubmit}>
+          <div className="d-flex align-self-end input-group w-auto">
             <input type='text'
               className='form-control'
               placeholder='User name'
@@ -78,13 +76,11 @@ const Bar = (props,a) => {
               onChange={handleInput}
             />
 
-            <Link to={`/cart/${app.usr}`} 
-                  style={{ color: "white" }} 
-                  className="text-decoration-none">
-              <div className="btn btn-secondary m-2" 
-                   type="submit" >Log in</div>
-            </Link>
-
+            
+               <input type="submit"
+                        value="login" />
+            
+            </div>
           </form>
 
 
