@@ -1,37 +1,34 @@
-import React   from "react";
+import React, {useState, useContext}   from "react";
 import { Link } from "react-router-dom";
-import { UserCtx } from "./UserCtx"; 
+ 
+import { UserContext } from "../App";
 
 
-
-const Bar = (props,a) => {
+const Bar = (  ) => {
   
-   let user = props.value;
+   
+   const {appState, setAppState} = useContext(UserContext);
+   const [state,setUser] = useState("");
+   console.log("appState " + JSON.stringify(appState));
 
-  const consumeUsr = (usr) => {
-    console.log("consumed "+usr);
-    return usr;
-  }
-
+  
   const handleInput = (e) => {
-      
+      setUser({user: e.target.value});
+      e.preventDefault();
   }
   const handleSubmit = (e) => {
 
-    //nieko nedaro
-    console.log("init context props : " + JSON.stringify(props.value));
+    setAppState({usr:state.user});
     e.preventDefault();
 
  
   }
   return (
-    <UserCtx.Consumer>
-      {(app) => (
-       
+ 
       <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
         <div className="container-fluid">
 
-          <div className="navbar-brand">E-shop  [{app.usr}]</div>
+          <div className="navbar-brand">E-shop  [{appState.usr}]</div>
 
 
 
@@ -46,7 +43,7 @@ const Bar = (props,a) => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={`/cart/${user}`} 
+              <Link to={`/cart/${appState.usr}`} 
                     style={{ color: "white" }} 
                     className="text-decoration-none">
                 <button className="btn btn-secondary m-2">
@@ -66,7 +63,7 @@ const Bar = (props,a) => {
           </ul>
           <span style={{ color: "white" }} 
                 className="text m-2">
-                  Logged in as {app.usr}</span>
+                  Logged in as {appState.usr}</span>
           <form onSubmit={handleSubmit}>
           <div className="d-flex align-self-end input-group w-auto">
             <input type='text'
@@ -87,9 +84,9 @@ const Bar = (props,a) => {
         </div>
 
       </nav>
-      )}
+      
 
-      </UserCtx.Consumer>
+ 
   );
 
 }

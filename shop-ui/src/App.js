@@ -9,13 +9,12 @@ import {
 } from "react-router-dom";
 import Cart from "./Components/Cart";
 import Footer from "./Components/Footer";
- import { UserCtx } from "./Components/UserCtx";
-import Admin_view from "./Components/Admin/Admin_view";
+ import Admin_view from "./Components/Admin/Admin_view";
 
 //const stock = new Items();
 
 
-const UserContext = React.createContext("");
+export const UserContext = React.createContext({});
 
 
 
@@ -32,7 +31,7 @@ const App = () => {
 
     return (
         <div className="container">
-            <UserCtx.Provider value={appState} method={setAppState}>
+            <UserContext.Provider value={{appState: appState ,setAppState}}>
                 <BrowserRouter>
                      
                        <Bar /> 
@@ -61,7 +60,7 @@ const App = () => {
 
 
                 </BrowserRouter>
-            </UserCtx.Provider >
+            </UserContext.Provider >
         </div>
 
     );
