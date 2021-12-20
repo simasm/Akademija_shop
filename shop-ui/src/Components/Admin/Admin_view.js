@@ -11,7 +11,7 @@ export const  Admin_productListContext = React.createContext(
 
 const Admin_view = (props) => {
 
-    const [p,sp] = useState(0);
+    const [p,sp] = useState({products_array : null});
     
     
      const load = async () => {
@@ -21,6 +21,8 @@ const Admin_view = (props) => {
    
         console.log("aview loadedd " + JSON.stringify(p )
         +"\nproducts " + JSON.stringify(products) ) ;
+
+        sp({products_array : products});
 
     }
 
@@ -33,7 +35,7 @@ const Admin_view = (props) => {
 
     
     return (
-    <Admin_productListContext.Provider value={p}>
+    <Admin_productListContext.Provider value={{p: p, sp, load}}>
     <div className="container pt-2">
     <div className="row justify-content-evenly">
         <div className="col-6">
@@ -41,7 +43,7 @@ const Admin_view = (props) => {
             <Admin_productList />
         </div>
         <div className="col-4">
-           <Admin_productAddForm  />   
+           <Admin_productAddForm value={ load } />   
           </div>
         </div>
     </div>

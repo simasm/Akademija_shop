@@ -1,4 +1,4 @@
-import React, { Component, useContext, useState } from "react";
+import React, {  useState } from "react";
 import './App.css';
 import Bar from './Components/Bar'
 import ProductContainer from "./Components/ProductContainer";
@@ -49,7 +49,7 @@ const App = () => {
                             <Cart />
                         </Route>
                         <Route path="/admin">
-                            <AdminView /> 
+                         
                             
                             <Admin_view />
                         </Route>

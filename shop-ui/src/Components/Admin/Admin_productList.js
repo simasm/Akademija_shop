@@ -5,42 +5,29 @@ import { Admin_productListContext } from './Admin_view';
 
 const Admin_productList = (props) => {
 
-    const {p} = useContext(Admin_productListContext);
-    console.log("a__state "+ JSON.stringify(p));
+ const {p,sp,load} = useContext(Admin_productListContext);
 
-    const [state,setState] = useState({products_array:null} );
+
+     
+    console.log("apl_context "+ JSON.stringify(p));
+     
+    
+   
+ 
 
    
-   
 
-
-    const load  = () => {
-      // ctx.state.updatepa();
-        console.log("__pw");
-    }
-
-    useEffect(() => {
-        
-         load();
-        
-      
-
-    }, []);
-
-    const deleteProd = async (id) => {
+    const deleteProduct = async (id) => {
         console.log("http://localhost:8080/api/products/".concat(id));
         const response = await axios.delete("http://localhost:8080/api/products/".concat(id));
         console.log(response);
         if(response.status < 400) {
-            load();
+             load();
         }
      }
 
-   let deleteProduct = (id) => {
-        deleteProd(id);
-    }
-
-    if (state.products_array !== null)
+ 
+    if (p.products_array !== null)
         return   (
 
              
@@ -52,7 +39,7 @@ const Admin_productList = (props) => {
                     <div className="col m-2">quantity</div>
                     <div className="col m-2">action</div>
                         </li>
-                    {state.products_array.map(product =>
+                    {p.products_array.map(product =>
                         <li className="row bg-light" key={product.id}>
                             <div className="col m-2">
                             {product.id} </div>
@@ -72,6 +59,6 @@ const Admin_productList = (props) => {
 
         );
     else
-        return <> </>;
+        return <> null</>;
 }
 export default Admin_productList;

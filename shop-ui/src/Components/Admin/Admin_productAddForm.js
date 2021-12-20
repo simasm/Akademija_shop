@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import { useState,useEffect } from "react";
  import axios from "axios";
-import  Admin_productListContext  from "./Admin_productList";
-
+ 
+import { Admin_productListContext } from './Admin_view';
 
 const Admin_productAddForm = (props) => {
 
-    const  ctx  = useContext(Admin_productListContext);
+    
 
     const [state, setState] = useState({ title: "", price: "", quantity: ""});
-    console.log("aform listctx  " + JSON.stringify(ctx));
+    const {load} = useContext(Admin_productListContext);
  
     const submitHandle = (e) => {
 
@@ -35,8 +35,7 @@ const Admin_productAddForm = (props) => {
     }
 
     const validateForm = () => {
-        // console.log("price " + state.price.match(/([0-9]+\.?[0-9]*|\.[0-9]+)$/)
-        //      + "\n quant " + state.quant.match(/[0-9]+/));
+ 
         return( (state.price.match(/([0-9]+\.?[0-9]*|\.[0-9]+)$/) &&
             state.quantity.match(/[0-9]+/)) !== null);
     }
@@ -48,7 +47,7 @@ const Admin_productAddForm = (props) => {
         if(response.status < 400) 
             { 
                 
-                console.log("+d" +JSON.stringify(ctx));
+                load();
             }
          
      }
