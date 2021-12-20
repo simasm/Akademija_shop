@@ -1,5 +1,6 @@
 import React, {useState, useContext}   from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
  
 import { UserContext } from "../App";
 
@@ -9,17 +10,25 @@ const Bar = (  ) => {
    
    const {appState, setAppState} = useContext(UserContext);
    const [state,setUser] = useState("");
-   console.log("appState " + JSON.stringify(appState));
-
+ 
   
   const handleInput = (e) => {
       setUser({user: e.target.value});
       e.preventDefault();
   }
-  const handleSubmit = (e) => {
 
-    setAppState({usr:state.user});
-    e.preventDefault();
+  //login
+  const login = async() => {
+    const response = await axios.post("http://localhost:8080/api/users", {username : state.user});
+     
+  }
+  const handleSubmit = async(e) => {
+
+      console.log(JSON.stringify(appState));
+      setAppState({username:state.user, cart : [1]});
+
+      login();
+       e.preventDefault();
 
  
   }
@@ -28,7 +37,7 @@ const Bar = (  ) => {
       <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
         <div className="container-fluid">
 
-          <div className="navbar-brand">E-shop  [{appState.usr}]</div>
+          <div className="navbar-brand">E-shop </div>
 
 
 
@@ -43,7 +52,7 @@ const Bar = (  ) => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={`/cart/${appState.usr}`} 
+              <Link to={`/cart/${appState.username}`} 
                     style={{ color: "white" }} 
                     className="text-decoration-none">
                 <button className="btn btn-secondary m-2">
@@ -63,7 +72,7 @@ const Bar = (  ) => {
           </ul>
           <span style={{ color: "white" }} 
                 className="text m-2">
-                  Logged in as {appState.usr}</span>
+                  Logged in as {appState.username}</span>
           <form onSubmit={handleSubmit}>
           <div className="d-flex align-self-end input-group w-auto">
             <input type='text'

@@ -1,19 +1,25 @@
-import React, { useEffect } from 'react';
- 
-
+import React, {useContext}  from 'react';
+import { UserContext } from '../App';
+import axios from 'axios';
 
 const AddToCartButton = (props) => {
 
- 
-   const add = () => {
-       console.log("add ["+props.id+"]");
-      
+    const {appState, setAppState} = useContext(UserContext);
+   
+
+   const add =   () => {
+    console.log(JSON.stringify(appState));
+    setAppState({...appState, cart : appState.cart.concat([props.id])});
+    console.log(JSON.stringify(appState));
+    upladCart();
+   
    }
 
-   useEffect( () => {
-       
-    console.log("fkt hook "    );
-});
+   const upladCart = async() => {
+    console.log(JSON.stringify(appState));
+    const response = axios.post("http://localhost:8080/api/carts",appState);
+    console.log(response);
+   }
 
     return (
 

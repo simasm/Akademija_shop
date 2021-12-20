@@ -17,16 +17,12 @@ import Footer from "./Components/Footer";
 export const UserContext = React.createContext({});
 
 
-
-function Users() {
-    return <h2>Users</h2>;
-}
-
+ 
 const App = () => {
 
     
     
-    const [appState,setAppState] = useState({usr:"bruh",cart : [0]});
+    const [appState,setAppState] = useState({username:"", cart : [0]});
     
 
     return (
