@@ -1,4 +1,4 @@
-import React, { Component, useContext, useState } from "react";
+import React   from "react";
 import { Link } from "react-router-dom";
 import { UserCtx } from "./UserCtx"; 
 
@@ -14,7 +14,7 @@ const Bar = (props,a) => {
   }
 
   const handleInput = (e) => {
-
+      
   }
   const handleSubmit = (e) => {
 

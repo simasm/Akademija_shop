@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-
-const Footer =  (props) => {
+import React  from "react";
+ 
+const Footer =  ( ) => {
 
 
     return (

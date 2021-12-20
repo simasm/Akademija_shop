@@ -9,8 +9,7 @@ import {
 } from "react-router-dom";
 import Cart from "./Components/Cart";
 import Footer from "./Components/Footer";
-import AdminView from "./Components/AdminView";
-import { UserCtx } from "./Components/UserCtx";
+ import { UserCtx } from "./Components/UserCtx";
 import Admin_view from "./Components/Admin/Admin_view";
 
 //const stock = new Items();

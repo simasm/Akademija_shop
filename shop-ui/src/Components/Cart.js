@@ -1,10 +1,9 @@
 import React from "react";
 import {useParams} from "react-router";
-import {useContext} from 'react';
- 
+  
 
 
- const Cart = (props) => {
+ const Cart = ( ) => {
   
         let {user} = useParams();
       

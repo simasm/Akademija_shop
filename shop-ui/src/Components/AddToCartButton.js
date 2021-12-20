@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { useContext } from 'react';
-import { useLocation, useParams } from "react-router";
+ 
 
 
 const AddToCartButton = (props) => {

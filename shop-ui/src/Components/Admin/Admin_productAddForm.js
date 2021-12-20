@@ -1,22 +1,18 @@
 import React, { useContext } from "react";
-import { useState,useEffect } from "react";
+import { useState  } from "react";
  import axios from "axios";
  
 import { Admin_productListContext } from './Admin_view';
 
-const Admin_productAddForm = (props) => {
-
-    
+const Admin_productAddForm = ( ) => {
 
     const [state, setState] = useState({ title: "", price: "", quantity: ""});
     const {load} = useContext(Admin_productListContext);
  
     const submitHandle = (e) => {
 
-        console.log("state : "+JSON.stringify(state));
         if(validateForm()) {
             uploadProduct();
-           // ctx.updatepa();
             e.preventDefault();
 
         }

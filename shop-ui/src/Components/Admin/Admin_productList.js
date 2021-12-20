@@ -1,21 +1,11 @@
 import React, { useContext } from 'react';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+ import axios from 'axios';
 import { Admin_productListContext } from './Admin_view';
 
-const Admin_productList = (props) => {
+const Admin_productList = ( ) => {
 
- const {p,sp,load} = useContext(Admin_productListContext);
+ const {productList, load} = useContext(Admin_productListContext);
 
-
-     
-    console.log("apl_context "+ JSON.stringify(p));
-     
-    
-   
- 
-
-   
 
     const deleteProduct = async (id) => {
         console.log("http://localhost:8080/api/products/".concat(id));
@@ -27,10 +17,9 @@ const Admin_productList = (props) => {
      }
 
  
-    if (p.products_array !== null)
+    if (productList.products_array !== null)
         return   (
 
-             
                 <ol className="conainer pt-2">
                     <li className="row bg-dark" style={{ color: "white" }}>
                     <div className="col m-2">id</div>
@@ -39,7 +28,7 @@ const Admin_productList = (props) => {
                     <div className="col m-2">quantity</div>
                     <div className="col m-2">action</div>
                         </li>
-                    {p.products_array.map(product =>
+                    {productList.products_array.map(product =>
                         <li className="row bg-light" key={product.id}>
                             <div className="col m-2">
                             {product.id} </div>
