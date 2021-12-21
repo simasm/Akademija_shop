@@ -22,7 +22,7 @@ const App = () => {
 
     
     
-    const [appState,setAppState] = useState({username:"", cart : [0]});
+    const [appState,setAppState] = useState({username:"", cart : []});
     
 
     return (

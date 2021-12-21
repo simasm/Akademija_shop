@@ -37,7 +37,7 @@ const Admin_view = () => {
                         <Admin_productList />
                     </div>
                     <div className="col-4  ">
-                        <Admin_productAddForm value={loadProducts} />
+                        <Admin_productAddForm  />
                     </div>
                 </div>
             </div>

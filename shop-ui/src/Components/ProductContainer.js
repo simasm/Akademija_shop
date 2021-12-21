@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
     
     let {id} = useParams();
     var imgUrl = "https://media.karousell.com/media/photos/products/2020/01/23/samsung_basic_keypad_phone_1579753834_f597a219_progressive.jpg";
+    console.log("useparams id " + id);
     if(id === undefined)
         id = 0;
    // console.log("id == ", id);

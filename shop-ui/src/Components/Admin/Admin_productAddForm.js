@@ -81,9 +81,6 @@ const Admin_productAddForm = () => {
                 </div>
             </div>
 
-
-
-
             <input type="submit"
                 value="Submit" />
 

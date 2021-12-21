@@ -6,12 +6,10 @@ const Admin_productList = () => {
 
     const { productList, loadProducts } = useContext(Admin_productListContext);
 
-
     const deleteProduct = async (id) => {
-        console.log("http://localhost:8080/api/products/".concat(id));
+        
         const response = await axios.delete("http://localhost:8080/api/products/".concat(id));
-        console.log(response);
-        if (response.status < 400) {
+         if (response.status < 400) {
             loadProducts();
         }
     }
@@ -48,6 +46,6 @@ const Admin_productList = () => {
 
         );
     else
-        return <> null</>;
+        return <> loading...</>;
 }
 export default Admin_productList;
