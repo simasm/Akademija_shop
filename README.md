@@ -1,2 +1,2 @@
 # Akademija_shop
-Technologijų kurso praktinis darbas
+Technologijų kurso praktinis darbas 1 asdasd
